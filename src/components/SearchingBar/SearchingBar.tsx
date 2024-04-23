@@ -1,6 +1,6 @@
 import {Field, Form, Formik} from "formik";
 import style from "./SearchingBar.module.sass"
-import axios, {AxiosResponse} from "axios"
+import axios from "axios"
 import {useCitiesStore} from "../../store/CitiesStore.ts";
 import {City} from "../../store/CitiesType.ts";
 
@@ -8,16 +8,13 @@ export const SearchingBar = () =>{
 
     const {addCities, clearCities} = useCitiesStore();
 
-/*    type getCitiesResponseType = {
-        data:[
-            id: number,
+    type getCitiesResponseType = {
+            id: string,
             city: string,
             country: string,
             latitude: number,
             longitude: number
-        ]
-
-    }*/
+    }
 
     const Search = async (value: string) => {
 
@@ -37,13 +34,13 @@ export const SearchingBar = () =>{
         try {
             const response = await axios.request(options);
             clearCities();
-            response.data.data.map((city)=>
-
+            response.data.data.map((city : getCitiesResponseType)=>
             addCities({
                 id: city.id,
                 name: city.city,
                 country: city.country,
                 lat: city.latitude,
+
                 lon: city.longitude
             } as City) )
         } catch (error) {
