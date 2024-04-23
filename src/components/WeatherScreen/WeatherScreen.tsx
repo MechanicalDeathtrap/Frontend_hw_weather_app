@@ -2,6 +2,8 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import style from "./WeatherScreen.module.sass"
+import sunrise from "/src/assets/sunrise-svgrepo-com.svg"
+import sunset from "/src/assets/sunset-svgrepo-com.svg"
 
 export const WeatherScreen = () =>{
     const {lat, lon} = useParams();
@@ -141,11 +143,11 @@ export const WeatherScreen = () =>{
                         <span className={style.durabilityTitle}>Day durability</span>
                         <div className={style.dayDurabilitySheme}>
                             <div className={style.sunrise}>
-                                <img src="/src/assets/sunrise-svgrepo-com.svg" alt="sunrise" className={style.shemeImage}/>
+                                <img src={sunrise} alt="sunrise" className={style.shemeImage}/>
                                 <span className={style.sunriseTime}>{calculateTime(weatherInfo.sunrise)} am </span>
                             </div>
                             <div className={style.sunrise}>
-                                <img src="/src/assets/sunset-svgrepo-com.svg" alt="sunset"  className={style.shemeImage}/>
+                                <img src={sunset} alt="sunset"  className={style.shemeImage}/>
                                 <span className={style.sunriseTime}>{calculateTime(weatherInfo.sunset)} pm</span>
                             </div>
                         </div>
