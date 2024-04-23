@@ -2,8 +2,8 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import style from "./WeatherScreen.module.sass"
-import sunrise from "/src/assets/sunrise-svgrepo-com.svg"
-import sunset from "/src/assets/sunset-svgrepo-com.svg"
+import sunrise from '/src/assets/sunrise-svgrepo-com.svg'
+import sunset from '/src/assets/sunset-svgrepo-com.svg'
 
 export const WeatherScreen = () =>{
     const {lat, lon} = useParams();

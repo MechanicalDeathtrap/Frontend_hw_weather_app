@@ -40,7 +40,6 @@ export const SearchingBar = () =>{
                 name: city.city,
                 country: city.country,
                 lat: city.latitude,
-
                 lon: city.longitude
             } as City) )
         } catch (error) {
