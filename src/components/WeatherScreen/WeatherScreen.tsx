@@ -4,6 +4,17 @@ import {useEffect, useState} from "react";
 import style from "./WeatherScreen.module.sass"
 import sunrise from '/src/assets/sunrise-svgrepo-com.svg'
 import sunset from '/src/assets/sunset-svgrepo-com.svg'
+import sun from "/src/assets/01d.png"
+import blackSun from "/src/assets/01n.png"
+import cloudySun from "/src/assets/02d.png"
+import blackCloudySun from "/src/assets/02n.png"
+import clouds from "/src/assets/03n.png"
+import heavyClouds from "/src/assets/04n.png"
+import rain from "/src/assets/09n.png"
+import cloudyRain from "/src/assets/10d.png"
+import thunder from "/src/assets/11n.png"
+import snow from "/src/assets/13n.png"
+import fog from "/src/assets/50n.png"
 
 export const WeatherScreen = () =>{
     const {lat, lon} = useParams();
@@ -25,6 +36,23 @@ export const WeatherScreen = () =>{
             sunrise: 0,
             sunset: 0
         });
+
+    const getWeatherImage = (imageName : string) =>{
+        switch (imageName){
+            case ("01d") : return sun;
+            case ("01n") : return blackSun;
+            case ("02d") : return cloudySun;
+            case ("02n") : return blackCloudySun;
+            case ("03n" || "03d") : return clouds;
+            case ("04n" || "04d") : return heavyClouds;
+            case ("09n" || "09d") : return rain;
+            case ("10d") : return cloudyRain;
+            case ("10n") : return blackCloudySun;
+            case ("11n" || "11d") : return thunder;
+            case ("13n" || "13d") : return snow;
+            case ("50n" || "50d") : return fog;
+        }
+    }
 
     const calculateWindDirection = (degree: number): string | undefined =>{
         switch (true) {
@@ -104,7 +132,7 @@ export const WeatherScreen = () =>{
                         <span className={style.weatherDescription}>{weatherInfo.weatherDesc}</span>
                     </div>
                     <div className={style.temperatureInfo__right}>
-                        <img src={`/src/assets/${weatherInfo.icon}.png`} alt="weather_icon" className={style.weatherImage}/>
+                        <img src={getWeatherImage(weatherInfo.icon)} alt="weather_icon" className={style.weatherImage}/>
                         <div className={style.cloudiness}>Cloudiness:{weatherInfo.clouds}%</div>
                     </div>
                 </div>
@@ -147,7 +175,7 @@ export const WeatherScreen = () =>{
                                 <span className={style.sunriseTime}>{calculateTime(weatherInfo.sunrise)} am </span>
                             </div>
                             <div className={style.sunrise}>
-                                <img src={sunset} alt="sunset"  className={style.shemeImage}/>
+                                <img src={sunset} alt="sunset" className={style.shemeImage}/>
                                 <span className={style.sunriseTime}>{calculateTime(weatherInfo.sunset)} pm</span>
                             </div>
                         </div>
